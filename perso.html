@@ -1,0 +1,112 @@
+## -*- coding: utf-8 -*-
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<header>
+	<title>You owe me one!</title>
+	<link rel="icon" type="image/png" href="/favicon.png" />
+	<link href="beer.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="beer.js"></script>
+</header>
+
+<body>
+
+<div class="container">
+	
+	<a href="http://youowemeone.info" id="btthp"><img src="title.png" alt="you owe me one" class="title"/></a>
+	
+	<div class="motto">
+		<p>Remember all those beers your friends promised you when you helped them out?<br/>
+		Remember how most of them never came?</p>
+		<p>Beer is <i>de facto</i> the friends' money, and a debt paid is a friend kept.<br/>
+		So stop losing friends because of unpaid debts! Keep track of all 	those beers!</p>
+	</div>
+
+	<div class="content">
+		<div class="legend">
+			<div class="explanation">All numbers are expressed in pints.<br/>
+			<span class="show_table"><span class="toggle_conversion_table" id="show">Click here</span> to get a conversion table.</span>
+			<span class="hide_table"><span class="toggle_conversion_table" id="hide">Click here</span> to hide the conversion table.</span>
+			</div>
+		</div>
+		
+		<div class="subtitle"><span class="owner" id="${creditorID}">${creditorName}</span><br/>says</div>
+		
+		<table class="conversion">
+			<tr><td colspan="3" class="title">pt is short for pint, our standard unit</td></tr>
+			<tr><td class="unit">1 barrel</td><td class="equal">=</td></td><td class="pint">248 pt</td></tr>
+			<tr><td class="unit">1 half barrel</td><td class="equal">=</td></td><td class="pint">124 pt</td></tr>
+			<tr><td class="unit">1 gallon</td><td class="equal">=</td></td><td class="pint">8 pt</td></tr>
+			<tr><td class="unit">1 frisbee</td><td class="equal">=</td></td><td class="pint">3.1875 pt</td></tr>
+			<tr><td class="unit">1 forty</td><td class="equal">=</td></td><td class="pint">2.5 pt</td></tr>
+			<tr><td class="unit">1 liter</td><td class="equal">=</td></td><td class="pint">2.125 pt</td></tr>
+			<tr><td class="unit">1 bomber</td><td class="equal">=</td></td><td class="pint">1.375 pt</td></tr>
+			<tr><td class="unit">1 oz(ounce)</td><td class="equal">=</td></td><td class="pint">0.0625 pt</td></tr>
+			<tr><td colspan="3" class="source"><a href="http://www.conversionlookup.com/conversions/beervolume/about_beer_volume_conversions.php">source</a></td></tr>
+		</table>
+		
+		% if debitors == []:
+			<p class="noone">No debitors yet</p>
+			<ul class="owned_list">
+			</ul>
+		% else:
+		<p class="noone" style="display:none;">No debitors yet</p>
+		<ul class="owned_list">
+			
+			% for debitor in debitors:
+			<li id="${debitor['id']}">
+				<div class="actions">
+					<span class="edit" id="${debitor['id']}">edit</span><br/>
+					<span class="delete" id="${debitor['id']}">delete</span>
+				</div>
+				<div class="bla">
+				<span class="owned">${debitor['name']}</span>, you owe me <span class="number" id="${debitor['id']}">${debitor['amount']}</span>
+				<form class="number" id="${debitor['id']}">
+					<input type="text" class="amount" name="n" id="${debitor['id']}" value="${debitor['amount']}"/>
+				</form>
+				beer${(debitor['amount']>1)*'s'}!
+				</div>
+			</li>
+			% endfor
+		</ul>
+		% endif
+		
+		<form class="new_debitor">
+			<input type="text" name="debitorName" id="debitorName" />, you owe me <input type="text" name="amount" id="amount" /> beer(s)! <input type="submit" value="ok" />
+		</form>
+		
+		
+		<span class="add_owned">Add new debitor</span>
+	</div>
+	
+	<!-- SOCIAL NETWORKS -->
+	<div class="share">	
+	<!-- AddThis Button BEGIN -->
+	<a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=xa-4b8239f44dcccb55">
+	<img src="http://s7.addthis.com/static/btn/sm-share-en.gif" width="83" height="16" alt="Bookmark and Share" style="border:0"/>
+	</a>
+	<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=xa-4b8239f44dcccb55"></script>
+	<!-- AddThis Button END -->
+	</div>	
+	
+	<div class="credits">
+		You owe me one!, a stupid project by <a href="mailto:morel.jeremy@gmail.com">Jeremy Morel</a><br/>
+		Gorgeous logo by <a href="http://latanadeltorinese.blogspot.com/">Max Mentuccia</a>
+	</div>
+
+</div>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-9772019-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+</body>
+
+</html>
